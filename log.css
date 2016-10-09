@@ -1,0 +1,14 @@
+.error {
+    color: red;
+    font-size: 12px;
+}
+
+.info {
+    color: blue;
+    font-size: 12px;
+}
+
+.warm {
+    color: orange;
+    font-size: 12px;
+}
