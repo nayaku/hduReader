@@ -11,9 +11,7 @@ class User:
     solved_number = 0
     submissions = 0
     ac_rate = 0.0
-
-    # 判断这个用户是否合法
-    is_legal = True
+    is_legal = True  # 判断这个用户是否合法
 
     # 初始化
     def __init__(self, user_name):
