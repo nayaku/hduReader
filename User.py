@@ -4,6 +4,7 @@
 #   用户类
 ######
 class User:
+    # 类成员定义
     user_name = u""
     nike_name = u""
     moto = u""
