@@ -11,10 +11,12 @@ from os.path import getsize
 
 LOG_FILE = "Log.html"
 LOG_MAX_SIZE = setting.Log_Size  # 日记最大值（以KB为单位）
-LOG_SAVE_LINE = setting.Log_Save_Line #清空LOG后保留多少行
+LOG_SAVE_LINE = setting.Log_Save_Line  # 清空LOG后保留多少行
+
 
 class LogWrite:
-    __log_head__= u'''<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+    # Log日记的网页头部
+    __log_head__ = u'''<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
         "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -24,11 +26,12 @@ class LogWrite:
 </head>
 <body>
 '''
+
     # 开始启动
     def start(self):
         print "start"
         # 覆盖并生成新的日记
-        self.log_file = codecs.open(LOG_FILE, 'w', 'utf-8')#修改过的
+        self.log_file = codecs.open(LOG_FILE, 'w', 'utf-8')  # 修改过的
         self.log_file.write(self.__log_head__)
         self.log_file.close()
 
@@ -43,8 +46,8 @@ class LogWrite:
             self.log_file.write(u'<p class="info">[info] ')
         # 写入时间
         str_time = time.strftime('%Y-%m-%d %X', time.localtime()).encode('utf-8')
-        str_content=str_time + u'&#09;' + content + u'</p>'+u"\n"
-        #str_content=str_content.encode('utf-8')
+        str_content = str_time + u'&#09;' + content + u'</p>' + u"\n"
+        # str_content=str_content.encode('utf-8')
         self.log_file.write(str_content)
         self.log_file.close()
 
@@ -52,37 +55,37 @@ class LogWrite:
     def log_size_arrive_max(self):
 
         log_size = getsize(LOG_FILE)
-        log_size = log_size / 1024 #转换成KB
+        log_size = log_size / 1024  # 转换成KB
         if log_size > LOG_MAX_SIZE:
-            #获取最后几行的LIST
+            # 获取最后几行的LIST
             print "Log arrive max size."
-            self.log_file = codecs.open(LOG_FILE,encoding = 'utf-8')
-            str_buff_list=[]
+            self.log_file = codecs.open(LOG_FILE, encoding = 'utf-8')
+            str_buff_list = []
             self.log_pos = 0
             for line in range(LOG_SAVE_LINE):
-                str_lastline=self.lastline()
+                str_lastline = self.lastline()
                 str_buff_list.append(str_lastline)
             self.log_file.close()
 
-            #开始写入
-            self.log_file=codecs.open(LOG_FILE,'w','utf-8')
-            self.log_file.seek(0,0)
+            # 开始写入
+            self.log_file = codecs.open(LOG_FILE, 'w', 'utf-8')
+            self.log_file.seek(0, 0)
             self.log_file.write(self.__log_head__)
             while str_buff_list:
                 self.log_file.write(str_buff_list.pop())
             self.log_file.close()
 
-    #从倒数开始取起
+    # 从倒数开始取起
     def lastline(self):
         while True:
-            self.log_pos=self.log_pos-1
+            self.log_pos = self.log_pos - 1
             try:
-                self.log_file.seek(self.log_pos,2)
-                tttchar=self.log_file.read(1)
+                self.log_file.seek(self.log_pos, 2)
+                tttchar = self.log_file.read(1)
                 print tttchar
-                if tttchar=="\n":
+                if tttchar == "\n":
                     break
-            except:
+            except:  # 异常处理
                 self.log_pos = self.log_pos - 1
                 '''
                 self.log_file.seek(0,0)
@@ -90,10 +93,9 @@ class LogWrite:
                 print "Can't find! Read first line"+strs
                 return strs
                 '''
-        strs=self.log_file.readline()
+        strs = self.log_file.readline()
         return strs
 
 
-#生成实例
-log=LogWrite()
-
+# 生成实例
+log = LogWrite()
