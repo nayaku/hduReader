@@ -22,28 +22,23 @@ class MNNU_Reader:
         try:
             for page in range(1, self.get_pages_number()):
                 content = self.read_page(self.__users_url__ + str(page))
-                # content = content.replace(" ",'').replace("\t",'').replace("\r",'').replace("\r\n",'').replace("\n",'')
-                # print content
                 pattern = re.compile("<a href='/User/info/username/.*?'>(.*?)</a>.*?" +
                                      "<td><div style=.*?>(.*?)</div>", re.S)
                 items = re.findall(pattern, content)
-                # print items
                 for item in items:
-                    newitem = items[1]
                     newitem = item[1].replace("<br />", "")
                     newitem = re.sub('<.*?>|</.*?>', "", newitem)
                     newitem = re.sub('<tr>|<div>|</div>|</p>', "\t", newitem)
                     newitem = re.sub("\n", '', newitem)
-                    # out_newitem = u"格言：" + newitem + u"\n"
-                    # print newitem
+
                     # 二次匹配
                     second_pattern = re.compile(u'杭电账号=&.*?;(.*?)&.*?;', re.S)
                     second_item = re.findall(second_pattern, newitem)
-                    # print second_item
                     if second_item and isinstance(second_item[0], (str, unicode)):
                         user_name = item[0]
                         user_name = user_name.replace(" ", '')
                         user_name = user_name.replace("\t", '')
+
                         # 写日记
                         t_str = u"In MNNUOJ上成功读取到" + user_name + u"用户的信息！"
                         LogWrite.log.log_wirte(t_str)
@@ -52,12 +47,7 @@ class MNNU_Reader:
                         new_hdu_user = User.User(second_item[0])
                         new_hdu_user.nike_name = user_name
                         users_list.append(new_hdu_user)
-                        # else:
-                        # print u"fail\n"
-
-
-                        # newitem = "--" + str(page) + "--\n"
-                        # print newitem
+        # 异常处理
         except urllib2.URLError, e:
             if hasattr(e, "code"):
                 print e.code
@@ -80,7 +70,7 @@ class MNNU_Reader:
 
     # 获取页面的数量
     def get_pages_number(self):
-        url = setting.MNNU_Ranklist+'/1'
+        url = setting.MNNU_Ranklist + '/1'
         content = self.read_page(url)
         pattern = re.compile("class='last' >... (.*?)</a>", re.S)
         pages_number = int(re.findall(pattern, content)[0])
