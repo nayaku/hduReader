@@ -5,4 +5,5 @@
  python
 
 输入 python main.py 运行代码。
+setting.py为设置。
 
