@@ -32,7 +32,7 @@ if __name__ == '__main__':
         # 测试是否与HDU和MNNU连通
         try:
             request = urllib2.Request(setting.MNNU_Url)
-            response = urllib2.urlopen(request, timeout = 3)
+            response = urllib2.urlopen(request, timeout = setting.Time_Out)
             print setting.MNNU_Url + u"Read succeed."
         except urllib2.URLError, e:
             info = str(setting.MNNU_Url).encode('utf-8') + u"Read error："
@@ -56,7 +56,7 @@ if __name__ == '__main__':
         try:
             request = urllib2.Request(setting.HDU_Url,
                                       headers = {'User-Agent': 'Mozilla/4.0 (compatible; MSIE 5.5; Windows NT)'})
-            response = urllib2.urlopen(request, timeout = 3)
+            response = urllib2.urlopen(request, timeout = setting.Time_Out)
             print setting.HDU_Url + u"Read succeed"
         except urllib2.URLError, e:
             info = setting.HDU_Url + u"Read error："

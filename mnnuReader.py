@@ -64,7 +64,7 @@ class MNNU_Reader:
         LogWrite.log.log_wirte(t_str, info = True)
         print t_str
         request = urllib2.Request(page_url)
-        response = urllib2.urlopen(request)
+        response = urllib2.urlopen(request, timeout = setting.Time_Out)
         contemt = response.read().decode("utf-8", "ignore")
         return contemt
 

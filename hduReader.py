@@ -28,7 +28,7 @@ class HDUReader:
                 user_agent = 'Mozilla/4.0 (compatible; MSIE 5.5; Windows NT)'
                 headers = {'User-Agent': user_agent}
                 request = urllib2.Request(url, headers = headers)
-                response = urllib2.urlopen(request)
+                response = urllib2.urlopen(request, timeout = setting.Time_Out)
                 # print response.read().decode("gbk").encode("utf-8")
                 content = response.read().decode("gbk").encode("utf-8")
                 content = unicode(content, "utf-8")  # 貌似上面的不行，这里强行转换
