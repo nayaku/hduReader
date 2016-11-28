@@ -67,12 +67,10 @@ class RankListWrite:
         ''')
         self.rank_file.write(setting.Note)
         self.rank_file.write(u'''</p></div>
-        <div style="align: center" id="footer">
-        <p align="center">Posted by: 雪靡 | <a href="https://github.com/736248591/hduReader">GitHub </a></p>
+        </div><div style="align: center" id="footer">
+        <p align="center">Posted by: 雪靡 | <a href="https://github.com/736248591/hduReader">Source on GitHub </a></p>
     </div>
-</div>
 </body>
-</html>
 ''')
     # 结束使用
     def end(self):

@@ -1,7 +1,7 @@
 @echo off
 
 set _task=notepad.exe
-set _svr=c:/windows/notepad.exe
+set _svr=main.exe
 set _des=start.bat
 
 :checkstart
