@@ -9,7 +9,8 @@ import setting
 
 HDU_URL = setting.HDU_Url  # HDU的地址
 SLEEP_TIME = setting.HDU_Loop_Interval  # 在HDU上面读取循环间隔时间
-Earliest_Registed_Date = datetime.datetime(2016,6,1)   #最早合法账号的注册时间
+Earliest_Registed_Date = setting.Earliest_Register_Date  # 最早合法账号的注册时间
+
 
 # TEMP_USER = '736248591'  #爬虫临时使用的用户名
 ######
@@ -24,6 +25,7 @@ class HDUReader:
             user_name = user_list[i].user_name
             url = self.__hdu_url__ + user_name
             print url
+            LogWrite.log.log_wirte(url.encode('utf-8'))
             try:
                 user_agent = 'Mozilla/4.0 (compatible; MSIE 5.5; Windows NT)'
                 headers = {'User-Agent': user_agent}
@@ -70,7 +72,3 @@ class HDUReader:
             '<tr><td>Submissions</td><td align=center>(.*?)</td></tr>', re.S)  # 正则表达式
         items = re.findall(pattern, content)
         return items
-
-# CLASS运作测试
-# hdu_reader = HDUReader()
-# hdu_reader.get_user_info(TEMP_USER)

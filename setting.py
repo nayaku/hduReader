@@ -7,7 +7,7 @@ import datetime
 ######
 
 # 重试时间(s)
-Time_Out = 3
+Time_Out = 10
 ###### 主函数控制区域
 # 主循环间隔时间(s)
 Main_Loop_Interval = 180

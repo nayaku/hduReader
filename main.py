@@ -14,6 +14,7 @@ LOOP_SELLP_TIME = setting.Main_Loop_Interval  # 每次主循环的间隔时间
 
 # 这里是主文件。用 python main.py 运行这个脚本
 if __name__ == '__main__':
+
     # 准备写入日记
     LogWrite.log.start()
     print u"System Start!"

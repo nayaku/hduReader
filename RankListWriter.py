@@ -23,15 +23,18 @@ class RankListWrite:
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <script src="FindContent.js"></script>
     <link href="table_styles.css" rel="stylesheet" type="text/css"/>
+    <link href="footer.css" rel="stylesheet" type="text/css"/>
     <title>HDU排行榜</title>
     <link rel="shortcut icon" href="images/LOGO_64x64.ico"/>
 </head>
+<body>
+<div id="container">
 <h1 style="text-align:center;">HDU 排名</h1>
 <div><p>&nbsp;&nbsp;Search:<input name="key" style="width: 200px" type="text" id="key" onkeydown="onSearch(this,'mytable')" value=""/></p></div>
 <table id="mytable" cellspacing="0" style="margin:auto ;width: auto">
 ''')
         str_time = time.strftime('%Y-%m-%d %X', time.localtime()).encode('utf-8')
-        str_time = u'    <caption><a href="Log.html" >Update at ' + str_time + u' </a></caption>'
+        str_time = u'    <caption>Update at ' + str_time + u' </caption>'
         self.rank_file.write(str_time)
         self.rank_file.write(u'''
     <tr>
@@ -63,9 +66,13 @@ class RankListWrite:
     <p align="left">
         ''')
         self.rank_file.write(setting.Note)
-        self.rank_file.write(u'''
-    </p>
+        self.rank_file.write(u'''</p></div>
+        <div style="align: center" id="footer">
+        <p align="center">Posted by: 雪靡 | <a href="https://github.com/736248591/hduReader">GitHub </a></p>
+    </div>
 </div>
+</body>
+</html>
 ''')
     # 结束使用
     def end(self):

@@ -33,11 +33,9 @@ class LogWrite:
         # 覆盖并生成新的日记
         self.log_file = codecs.open(LOG_FILE, 'w', 'utf-8')  # 修改过的
         self.log_file.write(self.__log_head__)
-        self.log_file.close()
 
     # 写入日记
     def log_wirte(self, content, info = False, warm = False, error = False):
-        self.log_file = codecs.open(LOG_FILE, 'a', 'utf-8')
         if warm:  # 输出警告
             self.log_file.write(u'<p class="warm">[warm] ')
         elif error:  # 输出错误
@@ -49,7 +47,6 @@ class LogWrite:
         str_content = str_time + u'&#09;' + content + u'</p>' + u"\n"
         # str_content=str_content.encode('utf-8')
         self.log_file.write(str_content)
-        self.log_file.close()
 
     # 日记大小是否达到最大值，如果达到就清空
     def log_size_arrive_max(self):
@@ -59,6 +56,7 @@ class LogWrite:
         if log_size > LOG_MAX_SIZE:
             # 获取最后几行的LIST
             print "Log arrive max size."
+            self.log_file.closed();
             self.log_file = codecs.open(LOG_FILE, encoding = 'utf-8')
             str_buff_list = []
             self.log_pos = 0
@@ -73,7 +71,6 @@ class LogWrite:
             self.log_file.write(self.__log_head__)
             while str_buff_list:
                 self.log_file.write(str_buff_list.pop())
-            self.log_file.close()
 
     # 从倒数开始取起
     def lastline(self):
@@ -87,12 +84,6 @@ class LogWrite:
                     break
             except:  # 异常处理
                 self.log_pos = self.log_pos - 1
-                '''
-                self.log_file.seek(0,0)
-                strs=self.log_file.readline()
-                print "Can't find! Read first line"+strs
-                return strs
-                '''
         strs = self.log_file.readline()
         return strs
 
