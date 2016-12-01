@@ -1,6 +1,6 @@
 @echo off
 
-set _task=notepad.exe
+set _task=main.exe
 set _svr=main.exe
 set _des=start.bat
 
@@ -22,15 +22,15 @@ set/p=.<nul
 for /L %%i in (1 1 10) do set /p a=.<nul&ping.exe /n 2 127.0.0.1>nul
 echo .
 echo Wscript.Sleep WScript.Arguments(0) >%tmp%/delay.vbs 
-cscript //b //nologo %tmp%/delay.vbs 10000 
+cscript //b //nologo %tmp%/delay.vbs 1000 
 del %_des% /Q
 echo ********程序启动完成********
 goto checkstart
 
 
 :checkag
-echo %time% 程序运行正常,10秒后继续检查.. 
+echo %time% 程序运行正常,100秒后继续检查.. 
 echo Wscript.Sleep WScript.Arguments(0) >%tmp%/delay.vbs 
-cscript //b //nologo %tmp%/delay.vbs 10000 
+cscript //b //nologo %tmp%/delay.vbs 1000 
 goto checkstart
 
