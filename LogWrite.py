@@ -27,11 +27,14 @@ class LogWrite:
 <body>
 '''
 
+    # 初始化
+    def __init__(self):
+        self.log_file = codecs.open(LOG_FILE, 'w', 'utf-8')  # 修改过的
+
     # 开始启动
     def start(self):
         print "start"
         # 覆盖并生成新的日记
-        self.log_file = codecs.open(LOG_FILE, 'w', 'utf-8')  # 修改过的
         self.log_file.write(self.__log_head__)
 
     # 写入日记
@@ -56,7 +59,7 @@ class LogWrite:
         if log_size > LOG_MAX_SIZE:
             # 获取最后几行的LIST
             print "Log arrive max size."
-            self.log_file.closed();
+            self.log_file.close()
             self.log_file = codecs.open(LOG_FILE, encoding = 'utf-8')
             str_buff_list = []
             self.log_pos = 0
@@ -79,12 +82,12 @@ class LogWrite:
             try:
                 self.log_file.seek(self.log_pos, 2)
                 tttchar = self.log_file.read(1)
-                print tttchar
                 if tttchar == "\n":
                     break
             except:  # 异常处理
                 self.log_pos = self.log_pos - 1
         strs = self.log_file.readline()
+        print strs
         return strs
 
 
