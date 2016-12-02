@@ -1,4 +1,5 @@
 @echo off
+cd %cd%
 
 set _task=main.exe
 set _svr=main.exe
@@ -12,6 +13,7 @@ if %%n==%_task% (goto checkag) else goto startsvr
 
 
 :startsvr
+
 echo %time% 
 echo ********程序开始启动********
 echo 程序重新启动于 %time% ,请检查系统日志 >> restart_service.txt
@@ -22,7 +24,7 @@ set/p=.<nul
 for /L %%i in (1 1 10) do set /p a=.<nul&ping.exe /n 2 127.0.0.1>nul
 echo .
 echo Wscript.Sleep WScript.Arguments(0) >%tmp%/delay.vbs 
-cscript //b //nologo %tmp%/delay.vbs 1000 
+cscript //b //nologo %tmp%/delay.vbs 10000 
 del %_des% /Q
 echo ********程序启动完成********
 goto checkstart
@@ -31,6 +33,6 @@ goto checkstart
 :checkag
 echo %time% 程序运行正常,100秒后继续检查.. 
 echo Wscript.Sleep WScript.Arguments(0) >%tmp%/delay.vbs 
-cscript //b //nologo %tmp%/delay.vbs 1000 
+cscript //b //nologo %tmp%/delay.vbs 10000 
 goto checkstart
 
