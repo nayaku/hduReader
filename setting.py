@@ -10,7 +10,7 @@ import datetime
 Time_Out = 10
 ###### 主函数控制区域
 # 主循环间隔时间(s)
-Main_Loop_Interval = 5  # 180
+Main_Loop_Interval = 180
 
 ###### 读取MNNU控制区域
 # MNNU读取循环间隔时间(s)

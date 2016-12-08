@@ -40,7 +40,7 @@ class RankListWrite:
     <tr>
         <td>Rank</td>
         <td>User Name</td>
-        <td>Nike Name</td>
+        <td>Nikename</td>
         <td>Moto</td>
         <td>Solved</td>
         <td>Submission</td>
