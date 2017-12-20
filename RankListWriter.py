@@ -9,7 +9,7 @@ import setting
 #   HDU排名网页写入
 ######
 TEMP_FILE_NAME = "TEMP_HDU_RANK_LIST.html"  # 临时文件名字
-FILE_NAME = "HDU_RANK_LIST.html"  # 最终文件名字
+FILE_NAME = "index.html"  # 最终文件名字
 
 
 class RankListWrite:

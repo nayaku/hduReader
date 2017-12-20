@@ -24,8 +24,9 @@ class HDUReader:
         for i in range(len(user_list)):
             user_name = user_list[i].user_name
             url = self.__hdu_url__ + user_name
+            print type(url)
             print url
-            LogWrite.log.log_wirte(url.encode('utf-8'))
+            LogWrite.log.log_wirte(url)
             try:
                 user_agent = 'Mozilla/4.0 (compatible; MSIE 5.5; Windows NT)'
                 headers = {'User-Agent': user_agent}
@@ -58,10 +59,13 @@ class HDUReader:
             except urllib2.URLError, e:
                 if hasattr(e, "code"):
                     print e.code
-                    LogWrite.log.log_wirte(str(e.code).encode('utf-8'), error = True)
+                    LogWrite.log.log_wirte(str(e.code).decode('utf-8'), error=True)
                 if hasattr(e, "reason"):
                     print e.reason
-                    LogWrite.log.log_wirte(str(e.reason).encode('utf-8'), error = True)
+                    LogWrite.log.log_wirte(str(e.reason).decode('utf-8'), error=True)
+            except:
+                print "错误！"
+
 
     # 开始匹配
     def math_string(self, content):

@@ -7,3 +7,7 @@
 输入 python main.py 运行代码。
 setting.py为设置。
 
+# 更新
+2017年12月20日
+更新了mnnu oj的判断方式、修正了一些BUG
+

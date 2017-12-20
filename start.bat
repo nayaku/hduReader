@@ -1,2 +1,0 @@
-start main.exe 
-exit 

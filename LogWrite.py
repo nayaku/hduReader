@@ -39,6 +39,8 @@ class LogWrite:
 
     # 写入日记
     def log_wirte(self, content, info = False, warm = False, error = False):
+        if type(content) is type(""):
+            content = content.decode('utf-8')
         if warm:  # 输出警告
             self.log_file.write(u'<p class="warm">[warm] ')
         elif error:  # 输出错误
@@ -46,7 +48,8 @@ class LogWrite:
         else:  # 输出普通信息
             self.log_file.write(u'<p class="info">[info] ')
         # 写入时间
-        str_time = time.strftime('%Y-%m-%d %X', time.localtime()).encode('utf-8')
+        str_time = time.strftime('%Y-%m-%d %X', time.localtime()).decode('utf-8')
+        print type(str_time), type(content)
         str_content = str_time + u'&#09;' + content + u'</p>' + u"\n"
         # str_content=str_content.encode('utf-8')
         self.log_file.write(str_content)

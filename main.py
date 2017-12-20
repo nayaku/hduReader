@@ -32,9 +32,9 @@ if __name__ == '__main__':
         try:
             request = urllib2.Request(setting.MNNU_Url)
             response = urllib2.urlopen(request, timeout = setting.Time_Out)
-            print setting.MNNU_Url + u"Read succeed."
+            print setting.MNNU_Url + u" Read succeed."
         except urllib2.URLError, e:
-            info = str(setting.MNNU_Url).encode('utf-8') + u"Read error："
+            info = str(setting.MNNU_Url).encode('utf-8') + u" Read error："
             if hasattr(e, "code"):
                 info = info + u' ' + str(e.code).encode('utf-8')
             if hasattr(e, "reason"):
@@ -120,4 +120,4 @@ if __name__ == '__main__':
             LogWrite.log.log_wirte(u"Rank list finish.Main Loop finish.")
         except BaseException, e:
             traceback.print_exc()
-            LogWrite.log.log_wirte(str(traceback.format_exc()).encode('utf-8'), error = True)
+            LogWrite.log.log_wirte(str(traceback.format_exc()).decode('utf-8'), error=True)
